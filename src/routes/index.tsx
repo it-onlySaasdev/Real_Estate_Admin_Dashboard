@@ -31,13 +31,6 @@ export const Route = createFileRoute("/")({
 
 const ngn = new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 });
 
-const stats = [
-  { label: "Total Revenue", value: ngn.format(482_500_000), change: "+12.4%", trend: "up", icon: Wallet, hint: "via Nomba virtual accounts" },
-  { label: "Plots Sold", value: "147", change: "+8.1%", trend: "up", icon: Home, hint: "across 4 estates" },
-  { label: "Allocations Issued", value: "132", change: "+5.6%", trend: "up", icon: CheckCircle2, hint: "auto-generated documents" },
-  { label: "Pending Allocations", value: "15", change: "-2.0%", trend: "down", icon: TrendingUp, hint: "awaiting confirmation" },
-] as const;
-
 const recentTxns = [
   { ref: "NMB-8821", buyer: "Chinedu Okafor", plot: "B-204", amount: 4_500_000, time: "2 min ago" },
   { ref: "NMB-8820", buyer: "Aisha Bello", plot: "C-118", amount: 7_200_000, time: "18 min ago" },
@@ -45,6 +38,45 @@ const recentTxns = [
   { ref: "NMB-8818", buyer: "Grace Eze", plot: "B-207", amount: 3_800_000, time: "3 hr ago" },
   { ref: "NMB-8817", buyer: "Ibrahim Musa", plot: "D-052", amount: 9_650_000, time: "Yesterday" },
 ];
+
+function buildStats(metrics: DashboardMetrics | null) {
+  return [
+    {
+      label: "Total Revenue",
+      value: metrics ? ngn.format(metrics.total_revenue_ngn) : "—",
+      change: "+12.4%",
+      trend: "up" as const,
+      icon: Wallet,
+      hint: "via Nomba virtual accounts",
+    },
+    {
+      label: "Allocated Plots",
+      value: metrics ? String(metrics.allocated_plots_count) : "—",
+      change: "+8.1%",
+      trend: "up" as const,
+      icon: Home,
+      hint: "fully allocated to buyers",
+    },
+    {
+      label: "Pending Validation",
+      value: metrics ? String(metrics.pending_validation_count) : "—",
+      change: "-2.0%",
+      trend: "down" as const,
+      icon: CheckCircle2,
+      hint: "awaiting confirmation",
+    },
+    {
+      label: "Active Listings",
+      value: metrics
+        ? String(Math.max(0, 210 - metrics.allocated_plots_count - metrics.pending_validation_count))
+        : "—",
+      change: "+1.4%",
+      trend: "up" as const,
+      icon: TrendingUp,
+      hint: "available inventory",
+    },
+  ];
+}
 
 function MetricsPage() {
   return (
