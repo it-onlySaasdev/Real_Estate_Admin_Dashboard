@@ -139,7 +139,9 @@ function MetricsPage() {
               </div>
               <div className="mt-5">
                 <div className="text-sm text-muted-foreground">{s.label}</div>
-                <div className="mt-1 font-display text-2xl sm:text-3xl font-bold text-foreground truncate">{s.value}</div>
+                <div className="mt-1 font-display text-2xl sm:text-3xl font-bold text-foreground truncate">
+                  {loading ? <Loader2 className="size-6 animate-spin text-muted-foreground" /> : s.value}
+                </div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.hint}</div>
               </div>
             </div>
