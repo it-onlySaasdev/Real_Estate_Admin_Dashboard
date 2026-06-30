@@ -68,6 +68,35 @@ function InventoryPage() {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<"All" | Status>("All");
   const [sandboxOpen, setSandboxOpen] = useState(false);
+  const [rows, setRows] = useState<Row[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(PROPERTIES_ENDPOINT);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        const list: ApiProperty[] = Array.isArray(json) ? json : json?.properties ?? json?.data ?? [];
+        if (!cancelled) setRows(list.map(mapProperty));
+      } catch (e) {
+        if (!cancelled) {
+          setError(e instanceof Error ? e.message : "Failed to load properties");
+          setRows(fallbackRows);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filtered = useMemo(() => {
     return rows.filter((r) => {
@@ -79,7 +108,7 @@ function InventoryPage() {
       const matchesFilter = filter === "All" || r.status === filter;
       return matchesQuery && matchesFilter;
     });
-  }, [query, filter]);
+  }, [rows, query, filter]);
 
   return (
     <AdminShell title="Property Inventory" subtitle="All plots, buyer assignments, and allocation status.">
