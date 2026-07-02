@@ -4,10 +4,10 @@ An enterprise B2B SaaS middleware application engineered for the Nigerian real e
 
 ---
 
-## 🎯 The Problem
+## The Problem
 In Nigeria, property buyers making high-ticket installment or full property payments via bank transfers face lengthy manual verification delays. Property firms often take days or weeks to reconcile bank records and manually issue official provisional allocation letters. This causes extreme customer anxiety, data fragmentation, and operational overhead.
 
-## 🚀 The Solution
+## The Solution
 EstateFlow automates the entire post-payment pipeline:
 1. **Fintech Hook:** The platform provisions unique Nomba Virtual Accounts for prospective buyers.
 2. **Secure Verification:** When a payment drops, a Python (Flask) middleware server securely catches and verifies Nomba's cryptographic `nomba-signature` header using the shared signing key.
@@ -16,7 +16,7 @@ EstateFlow automates the entire post-payment pipeline:
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 * **Frontend:** React, Tailwind CSS, initialized and prototyped via **Lovable.dev**
 * **Backend:** Python (Flask), `python-dotenv`, `flask-cors`
 * **Tunneling & Security:** ngrok, HMAC-SHA256 Cryptographic Signature Verification
@@ -59,7 +59,7 @@ ngrok http 5000
 
 ---
 
-## 🔐 Cryptographic Webhook Security
+##  Cryptographic Webhook Security
 To prevent malicious actors from spoofing payloads, our Python backend strictly validates incoming requests using Nomba's structural rules:
 * It reads the `nomba-signature` header from the request.
 * Computes an **HMAC-SHA256 hex digest** of the raw incoming request body using the `NOMBA_SIGNING_KEY`.
@@ -67,8 +67,7 @@ To prevent malicious actors from spoofing payloads, our Python backend strictly 
 
 ---
 
-## 👨‍💻 Authentication & Demo Credentials
+##  Authentication & Demo Credentials
 To review the live metrics dashboard and interactive inventory tables as a platform administrator, use the following preset credentials:
-* **Admin Portal URL:** Launch the React app preview.
-* **Email User:** `admin@example.com`
-* **Secure Password:** `password123`
+* **Admin Dashboard Portal URL:https://real-estate-admin-dashboard-lnwh3cnwq-idowu-tobi-saass-projects.vercel.app/.
+
