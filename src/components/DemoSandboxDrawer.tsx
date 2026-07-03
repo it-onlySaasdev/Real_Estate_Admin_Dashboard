@@ -43,22 +43,22 @@ export function DemoSandboxDrawer({ open, onClose }: DemoSandboxDrawerProps) {
         },
       },
     };
-
-    try {
-      await fetch("http://localhost:5000/api/v1/nomba-webhook", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      setSuccess({ email, amount });
-    } catch {
-      // Even if the local backend isn't reachable, surface a success in the sandbox
-      // since the request was fired — but flag it as a network notice.
-      setSuccess({ email, amount });
-      setError("Request fired. (Note: localhost:5000 was unreachable from preview.)");
-    } finally {
-      setLoading(false);
-    }
+    
+try {
+  await fetch("https://idowutobi1.pythonanywhere.com/api/v1/nomba-webhook", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  setSuccess({ email, amount });
+} catch {
+  // Even if the backend isn't reachable, surface a success in the sandbox
+  // since the request was fired — but flag it as a network notice.
+  setSuccess({ email, amount });
+  setError("Request fired. (Note: PythonAnywhere backend was unreachable from preview.)");
+} finally {
+  setLoading(false);
+}
   }
 
   return (

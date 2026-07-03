@@ -140,7 +140,7 @@ export function AdminShell({ children, title, subtitle }: { children: ReactNode;
             <div className="border-t border-sidebar-border px-4 py-3 flex items-center gap-3">
               <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">AO</div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold truncate">Adaeze O.</div>
+                <div className="text-sm font-semibold truncate">Idowu Tobi.</div>
                 <div className="text-xs text-sidebar-foreground/60 truncate">admin@estate.ng</div>
               </div>
               <button className="text-sidebar-foreground/60 hover:text-sidebar-foreground"><LogOut className="size-4" /></button>
@@ -181,7 +181,7 @@ export function AdminShell({ children, title, subtitle }: { children: ReactNode;
             <div className="hidden sm:flex items-center gap-3 pl-2">
               <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">AO</div>
               <div className="text-left leading-tight">
-                <div className="text-sm font-semibold">Adaeze O.</div>
+                <div className="text-sm font-semibold">Idowu Tobi.</div>
                 <div className="text-xs text-muted-foreground">Administrator</div>
               </div>
             </div>
