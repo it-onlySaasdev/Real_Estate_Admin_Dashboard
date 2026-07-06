@@ -3,9 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/AdminShell";
 import { DemoSandboxDrawer } from "@/components/DemoSandboxDrawer";
 import { VirtualAccountModal } from "@/components/VirtualAccountModal";
-import { Search, Download, Filter, FlaskConical, Loader2, Banknote, FileText, Send, Clock } from "lucide-react";
+import { Search, Download, Filter, FlaskConical, Loader2, Banknote, FileText, Send, Clock, RefreshCw } from "lucide-react";
 
 const PROPERTIES_ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/properties";
+const RESET_ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/reset-a032";
 
 export const Route = createFileRoute("/inventory")({
   head: () => ({
@@ -104,28 +105,42 @@ function InventoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch(PROPERTIES_ENDPOINT);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        const list: ApiProperty[] = Array.isArray(json) ? json : json?.properties ?? json?.data ?? [];
-        if (!cancelled) setRows(list.map(mapProperty));
-      } catch (e) {
-        if (!cancelled) {
-          setError(e instanceof Error ? e.message : "Failed to load properties");
-          setRows(fallbackRows);
+  async function loadProperties() {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(PROPERTIES_ENDPOINT, {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         }
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      const list: ApiProperty[] = Array.isArray(json) ? json : json?.properties ?? json?.data ?? [];
+      setRows(list.map(mapProperty));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load properties");
+      setRows(fallbackRows);
+    } finally {
+      setLoading(false);
     }
-    load();
-    return () => { cancelled = true; };
+  }
+
+  async function resetA032() {
+    setLoading(true);
+    try {
+      await fetch(RESET_ENDPOINT, { method: 'POST' });
+      await loadProperties();
+    } catch (e) {
+      console.error("Failed to reset A-032:", e);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadProperties();
   }, []);
 
   const estates = useMemo(() => {
@@ -191,6 +206,13 @@ function InventoryPage() {
             >
               <FlaskConical className="size-4" />
               <span className="hidden sm:inline">Sandbox</span>
+            </button>
+            <button
+              onClick={resetA032}
+              className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/40 px-3 py-2 text-sm font-semibold hover:bg-green-500/20"
+            >
+              <RefreshCw className="size-4" />
+              <span className="hidden sm:inline">Reset Demo</span>
             </button>
             <button className="shrink-0 inline-flex items-center gap-2 rounded-lg bg-accent text-accent-foreground px-3 py-2 text-sm font-semibold hover:opacity-90">
               <Download className="size-4" />
