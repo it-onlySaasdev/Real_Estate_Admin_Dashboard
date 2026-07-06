@@ -179,7 +179,7 @@ export function AdminShell({ children, title, subtitle }: { children: ReactNode;
               <span className="absolute top-2 right-2 size-2 rounded-full bg-accent" />
             </button>
             <div className="hidden sm:flex items-center gap-3 pl-2">
-              <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">AO</div>
+              <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">IT</div>
               <div className="text-left leading-tight">
                 <div className="text-sm font-semibold">Idowu Tobi.</div>
                 <div className="text-xs text-muted-foreground">Administrator</div>
