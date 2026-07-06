@@ -5,7 +5,7 @@ import { DemoSandboxDrawer } from "@/components/DemoSandboxDrawer";
 import { VirtualAccountModal } from "@/components/VirtualAccountModal";
 import { Search, Download, Filter, FlaskConical, Loader2, Banknote, FileText, Send, Clock } from "lucide-react";
 
-const PROPERTIES_ENDPOINT = "http://localhost:5000/api/v1/properties";
+const PROPERTIES_ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/webhook-events";
 
 export const Route = createFileRoute("/inventory")({
   head: () => ({

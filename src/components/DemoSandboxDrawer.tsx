@@ -180,7 +180,7 @@ try {
 
           <div className="mt-5 rounded-xl border border-dashed border-border p-4 text-xs text-muted-foreground">
             <strong className="text-foreground">Endpoint:</strong>{" "}
-            <code className="font-mono">POST http://localhost:5000/api/v1/nomba-webhook</code>
+            <code className="font-mono">POST https://idowutobi1.pythonanywhere.com/api/v1/nomba-webhook</code>
           </div>
         </div>
       </aside>

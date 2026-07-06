@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/AdminShell";
 import { Loader2, RefreshCw, Webhook, CheckCircle2, XCircle, Clock } from "lucide-react";
 
-const ENDPOINT = "http://localhost:5000/api/v1/webhook-events";
+const ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/webhook-events";
 
 export const Route = createFileRoute("/webhook-events")({
   head: () => ({

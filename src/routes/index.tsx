@@ -11,7 +11,7 @@ import {
   Loader2,
 } from "lucide-react";
 
-const METRICS_ENDPOINT = "http://localhost:5000/api/v1/dashboard-metrics";
+const METRICS_ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/dashboard-metrics";
 
 interface DashboardMetrics {
   total_revenue_ngn: number;
