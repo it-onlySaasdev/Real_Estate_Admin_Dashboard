@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { X, Loader2, Copy, CheckCircle2, Banknote } from "lucide-react";
 
-const ENDPOINT = "http://localhost:5000/api/v1/virtual-accounts";
+const ENDPOINT = "https://idowutobi1.pythonanywhere.com/api/v1/virtual-accounts";
 
 interface Props {
   open: boolean;

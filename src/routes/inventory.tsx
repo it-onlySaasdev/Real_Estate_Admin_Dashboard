@@ -67,7 +67,7 @@ function mapProperty(p: ApiProperty): Row {
     amount: p.amount_paid ?? p.amount ?? 0,
     plot: p.plot ?? "—",
     status: normalizeStatus(p.status),
-    estate: p.estate?.trim() || "Unassigned",
+    estate: p.estate?.trim() || p.plot?.split(" ")[0] || "Amen Estate",
     allocation: normalizeAllocation(p.allocation_status),
   };
 }
