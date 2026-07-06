@@ -138,7 +138,7 @@ export function AdminShell({ children, title, subtitle }: { children: ReactNode;
               <SidebarNav collapsed={false} pathname={pathname} onNavigate={() => setMobileOpen(false)} />
             </div>
             <div className="border-t border-sidebar-border px-4 py-3 flex items-center gap-3">
-              <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">AO</div>
+              <div className="size-9 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold text-sm">IT</div>
               <div className="flex-1 min-w-0">
                 <div className="text-sm font-semibold truncate">Idowu Tobi.</div>
                 <div className="text-xs text-sidebar-foreground/60 truncate">admin@estate.ng</div>
