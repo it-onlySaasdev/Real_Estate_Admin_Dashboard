@@ -69,5 +69,5 @@ To prevent malicious actors from spoofing payloads, our Python backend strictly 
 
 ##  Authentication & Demo Credentials
 To review the live metrics dashboard and interactive inventory tables as a platform administrator, use the following preset credentials:
-* **Admin Dashboard Portal URL:https://real-estate-admin-dashboard-lnwh3cnwq-idowu-tobi-saass-projects.vercel.app/.
+* **Admin Dashboard Portal URL:https://real-estate-admin-dashboard-iota.vercel.app/.
 
